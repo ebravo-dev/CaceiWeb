@@ -1,0 +1,12 @@
+bin/
+obj/
+packages/
+.DS_Store
+*.db
+*.log
+xsp-source/
+App_Data/*.db
+.vscode/
+.idea/
+*.user
+*.suo

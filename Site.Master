@@ -1,0 +1,74 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Master.cs" Inherits="CaceiWeb.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - CACEI Sistema</title>
+    <link href="Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form runat="server">
+        <!-- Barra superior de usuario -->
+        <asp:Panel ID="pnlUserBar" runat="server" CssClass="user-bar" Visible="false">
+            <div class="user-bar-content">
+                <span class="user-info">
+                    👤 <strong><asp:Literal ID="litNombreUsuario" runat="server"></asp:Literal></strong>
+                    <span class="user-role"><asp:Literal ID="litRolUsuario" runat="server"></asp:Literal></span>
+                </span>
+                <asp:LinkButton ID="btnLogout" runat="server" CssClass="btn-logout" OnClick="btnLogout_Click">
+                    Cerrar Sesión
+                </asp:LinkButton>
+            </div>
+        </asp:Panel>
+
+        <header>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="Default.aspx">📋 CACEI Sistema</a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/Default.aspx">Inicio</a></li>
+                    
+                    <!-- Menú Admin -->
+                    <asp:Panel ID="pnlMenuAdmin" runat="server" Visible="false">
+                        <li class="nav-dropdown">
+                            <a href="#">Administración ▼</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Admin/Usuarios.aspx">Usuarios</a></li>
+                                <li><a href="/Admin/Academias.aspx">Academias</a></li>
+                                <li><a href="/Admin/Materias.aspx">Materias</a></li>
+                            </ul>
+                        </li>
+                    </asp:Panel>
+                    
+                    <!-- Menú Presidente -->
+                    <asp:Panel ID="pnlMenuPresidente" runat="server" Visible="false">
+                        <li><a href="/Presidente/MiAcademia.aspx">Mi Academia</a></li>
+                    </asp:Panel>
+                    
+                    <!-- Menú Profesor -->
+                    <asp:Panel ID="pnlMenuProfesor" runat="server" Visible="false">
+                        <li><a href="/Profesor/MisMaterias.aspx">Mis Materias</a></li>
+                    </asp:Panel>
+                    
+                    <!-- Login si no está autenticado -->
+                    <asp:Panel ID="pnlLoginLink" runat="server">
+                        <li><a href="Login.aspx" class="btn-nav-login">Iniciar Sesión</a></li>
+                    </asp:Panel>
+                </ul>
+            </nav>
+        </header>
+        
+        <main class="container">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+        
+        <footer>
+            <p>&copy; <%: DateTime.Now.Year %> - CACEI Sistema de Gestión</p>
+        </footer>
+    </form>
+</body>
+</html>
